@@ -1,19 +1,31 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Image, ShoppingBag, Tag, Search } from 'lucide-react';
+import { productImages, getProductImage } from '../utils/productImageHelper';
 
 const Products = () => {
-  // Datos de prueba para los productos
+  // Datos de productos con imágenes reales
   const allProducts = [
-    { id: 1, name: 'Gadget Supremo', description: 'Hace cosas que no sabías que necesitabas.', image: 'https://via.placeholder.com/300x200?text=Gadget+Supremo', category: 'Electrónica' },
-    { id: 2, name: 'Dispositivo Mágico', description: 'Transforma tu vida (o al menos tu día).', image: 'https://via.placeholder.com/300x200?text=Dispositivo+Mágico', category: 'Hogar' },
-    { id: 3, name: 'Cosa Increíble', description: 'No sabemos qué es, pero lo quieres.', image: 'https://via.placeholder.com/300x200?text=Cosa+Increíble', category: 'Novedades' },
-    { id: 4, name: 'Artilugio Fantástico', description: 'Tu vida antes y después de este producto.', image: 'https://via.placeholder.com/300x200?text=Artilugio+Fantástico', category: 'Electrónica' },
-    { id: 5, name: 'Maravilla Tecnológica', description: 'Tan avanzado que aún no lo entendemos.', image: 'https://via.placeholder.com/300x200?text=Maravilla+Tecnológica', category: 'Hogar' },
-    { id: 6, name: 'Objeto Deseado', description: 'El sueño de todo coleccionista (o comprador compulsivo).', image: 'https://via.placeholder.com/300x200?text=Objeto+Deseado', category: 'Novedades' },
-    { id: 7, name: 'Auriculares Inalámbricos', description: 'Sumérgete en tu música sin cables.', image: 'https://via.placeholder.com/300x200?text=Auriculares', category: 'Electrónica' },
-    { id: 8, name: 'Lámpara de Ambiente', description: 'Crea la atmósfera perfecta para cualquier ocasión.', image: 'https://via.placeholder.com/300x200?text=Lámpara', category: 'Hogar' },
-    { id: 9, name: 'Juego de Mesa Épico', description: 'Horas de diversión garantizadas (o frustración, depende de tus amigos).', image: 'https://via.placeholder.com/300x200?text=Juego+Mesa', category: 'Entretenimiento' },
+    { 
+      id: 1, 
+      name: 'Producto Fluor', 
+      description: 'Producto con acabado fluorescente de alta calidad.', 
+      image: getProductImage('fluor'), 
+      category: 'Especialidad',
+      imageKey: 'fluor' 
+    },
+    { 
+      id: 2, 
+      name: 'Producto Transparente', 
+      description: 'Producto con acabado transparente cristalino.', 
+      image: getProductImage('transparente'), 
+      category: 'Especialidad',
+      imageKey: 'transparente' 
+    },
+    // Productos de ejemplo con placeholders (puedes reemplazarlos cuando tengas más imágenes)
+    { id: 3, name: 'Producto Premium', description: 'Producto de alta gama con características excepcionales.', image: 'https://via.placeholder.com/300x200?text=Premium', category: 'Premium' },
+    { id: 4, name: 'Producto Estándar', description: 'Solución confiable para uso cotidiano.', image: 'https://via.placeholder.com/300x200?text=Estándar', category: 'Estándar' },
+    { id: 5, name: 'Producto Económico', description: 'Calidad accesible sin comprometer la funcionalidad.', image: 'https://via.placeholder.com/300x200?text=Económico', category: 'Económico' },
   ];
 
   const [selectedCategory, setSelectedCategory] = useState('Todos');
@@ -30,7 +42,7 @@ const Products = () => {
 
   return (
     <motion.div
-      className="min-h-[calc(100vh-80px)] bg-gradient-to-br from-yellow-50 to-orange-100 p-8"
+      className="min-h-[calc(100vh-80px)] bg-white p-8"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
@@ -109,6 +121,10 @@ const Products = () => {
                 src={product.image}
                 alt={product.name}
                 className="w-full h-48 object-cover"
+                onError={(e) => {
+                  e.target.onerror = null; // Prevenir loop infinito
+                  e.target.src = 'https://via.placeholder.com/300x200?text=Imagen+No+Disponible';
+                }}
               />
               <div className="p-6">
                 <h3 className="text-2xl font-semibold text-gray-800 mb-2">{product.name}</h3>
