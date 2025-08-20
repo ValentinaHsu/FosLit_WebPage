@@ -40,7 +40,7 @@ const Home = () => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.7, type: "spring", stiffness: 100 }}
         >
-          Bienvenido al catalogo de <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-black">FOSLit</span>
+          Bienvenido al catalogo de <span className="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-black">FOSLiT</span>
         </motion.h1>
         <motion.p
           className="text-xl text-gray-600 mb-10"

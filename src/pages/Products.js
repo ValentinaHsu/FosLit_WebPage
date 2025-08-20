@@ -65,14 +65,14 @@ const Products = () => {
       const fallbackProducts = [
         { 
           id: 1, 
-          name: 'Producto Ejemplo', 
-          description: 'Datos de ejemplo - API no disponible', 
-          category: 'Ejemplo',
-          image: 'https://via.placeholder.com/300x200?text=API+No+Disponible'
+          name: 'Encendedor Fluorescente', 
+          description: 'Encendedor fluorecente, lorem ipsum loren ipsum loren ipsum', 
+          category: 'Encendedores',
+          image: 'https://i.imghippo.com/files/CHnf8024lY.jpg'
         }
       ];
       setAllProducts(fallbackProducts);
-      setCategories(['Todos', 'Ejemplo']);
+      setCategories(['Todos', 'Encendedores']);
       
     } finally {
       setLoading(false);
